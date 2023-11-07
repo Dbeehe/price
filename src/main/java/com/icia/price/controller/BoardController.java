@@ -36,6 +36,7 @@ public class BoardController {
         return "redirect:/board";
     }
 
+    @GetMapping
     public String findAll(Model model,
                           @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                           @RequestParam(value = "type", required = false, defaultValue = "boardTitle") String type,

@@ -15,6 +15,7 @@
     contents: <textarea id="board-contents" name="boardContents" cols="30" rows="10" class="form-control" th:text="${board.boardContents}" placeholder="내용을 입력하세요"></textarea>
     <input type="hidden" name="id" th:value="${board.id}">
     <input type="hidden" name="boardHits" th:value="${board.boardHits}">
+    <input type="hidden" name="boardPass" th:value="${board.boardPass}">
     <input type="button" value="수정" onclick="board_update()" class="btn btn-primary">
   </form>
 </div>
@@ -27,6 +28,7 @@
     const id = document.querySelector('[name="id"]').value;
     const boardWriter = document.querySelector('[name="boardWriter"]').value;
     const boardTitle = document.querySelector('[name="boardTitle"]').value;
+    const boardPass = document.querySelector('[name="boardPass"]').value;
     const boardHits = document.querySelector('[name="boardHits"]').value;
     const boardContents = document.querySelector('[name="boardContents"]').value;
     axios({
@@ -38,6 +40,7 @@
         boardWriter: boardWriter,
         boardContents: boardContents,
         boardHits: boardHits,
+        boardPass: boardPass
       }
     }).then(res => {
       location.href = `/board/${id}`;
