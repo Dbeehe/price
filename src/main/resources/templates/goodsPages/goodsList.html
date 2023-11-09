@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="~{component/config :: config}"></th:block>
+
+</head>
+<body>
+<div th:replace="~{component/header :: header}"></div>
+<div th:replace="~{component/nav :: nav}"></div>
+
+<div class="container mt-5 mb-5">
+  <!-- 화면에 보여질 내용이 들어갈 부분 -->
+  <div class="container" id="paging-list">
+    <div class="container">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" th:href="@{/goods(page=1, type=${type}, q=${q})}">
+            <span>First</span>
+          </a>
+        </li>
+
+        <li th:class="${goodsList.first} ? 'disabled'" class="page-item">
+          <a class="page-link" th:href="${goodsList.first} ? '#' : @{/goods(page=${goodsList.number}, type=${type}, q=${q})}">
+            <span><</span> <!-- < -->
+          </a>
+        </li>
+
+        <li th:each="page: ${#numbers.sequence(startPage, endPage)}"
+            th:class="${page == goodsList.number + 1} ? 'page-item active'" class="page-item">
+          <a class="page-link" th:text="${page}" th:href="@{/goods(page=${page}, type=${type}, q=${q})}"></a>
+        </li>
+
+        <li th:class="${goodsList.last} ? 'disabled'">
+          <a class="page-link" th:href="${goodsList.last} ? '#' : @{/goods(page=${goodsList.number + 2}, type=${type}, q=${q})}">
+            <span>&gt;</span>
+          </a>
+        </li>
+
+        <li class="page-item">
+          <a class="page-link" th:href="@{/goods(page=${goodsList.totalPages}, type=${type}, q=${q})}">
+            <span>Last</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <form action="/goods" method="get" class="d-flex" role="search">
+      <select name="type" class="form-select me-2 w-50">
+        <option value="goodsName">상품이름</option>
+        <option value="goodsMaker">상품제조사</option>
+      </select>
+      <input class="form-control me-2 w-auto" type="search" name="q" placeholder="검색어를 입력하세요"
+             aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</div>
+
+<div th:replace="~{component/footer :: footer}"></div>
+
+</body>
+</html>
