@@ -11,6 +11,24 @@
 <div class="container mt-5 mb-5">
   <!-- 화면에 보여질 내용이 들어갈 부분 -->
   <div class="container" id="paging-list">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">상품이름</th>
+        <th scope="col">상품목록</th>
+        <th scope="col">상품가격</th>
+        <th scope="col">제조사</th>
+      </tr>
+      <tr style="vertical-align: middle" th:each="goods: ${goodsList}">
+        <td th:text="${goods.goodsName}"></td>
+        <td>
+          <a th:href="@{|/goods/${goods.id}|(page=${page}, type=${type}, q=${q})}"><img th:src="@{|/upload/${fileName}}" width="200" height="200" alt=""></a>
+        </td>
+        <td th:text="${goods.goodsPrice}"></td>
+        <td th:text="${goods.goodsMaker}"></td>
+      </tr>
+    </table>
+
     <div class="container">
       <ul class="pagination justify-content-center">
         <li class="page-item">
@@ -18,7 +36,6 @@
             <span>First</span>
           </a>
         </li>
-
         <li th:class="${goodsList.first} ? 'disabled'" class="page-item">
           <a class="page-link" th:href="${goodsList.first} ? '#' : @{/goods(page=${goodsList.number}, type=${type}, q=${q})}">
             <span><</span> <!-- < -->

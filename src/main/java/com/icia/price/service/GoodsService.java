@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -71,6 +72,8 @@ public class GoodsService {
     }
 
 
-
-
+    public GoodsDTO findById(Long id) {
+        GoodsEntity goodsEntity = goodsRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+        return GoodsDTO.toDTO(goodsEntity);
+    }
 }
