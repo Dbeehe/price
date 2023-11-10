@@ -8,9 +8,28 @@
 <div th:replace="~{component/header :: header}"></div>
 <div th:replace="~{component/nav :: nav}"></div>
 
-<div class="container">
+<div class="container mt-5 mb-5">
   <!-- 화면에 보여질 내용이 들어갈 부분 -->
-  <h2>index</h2>
+  <table class="table table-hover">
+    <tr th:if="${goods.fileAttached == 1}">
+      <th>image</th>
+      <td th:each="fileName: ${goods.storedFileName}">
+        <img th:src="@{|/upload/${fileName}}" width="400" height="400" alt="">
+      </td>
+    </tr>
+    <tr>
+      <th>상품명</th>
+      <td th:text="${goods.goodsName}"></td>
+    </tr>
+    <tr>
+      <th>상품가격</th>
+      <td th:text="${goods.goodsPrice}"></td>
+    </tr>
+    <tr>
+      <th>제조사</th>
+      <td th:text="${goods.goodsMaker}"></td>
+    </tr>
+  </table>
 </div>
 
 <div th:replace="~{component/footer :: footer}"></div>

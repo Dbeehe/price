@@ -28,7 +28,7 @@ public class GoodsService {
 
     public Long save(GoodsDTO goodsDTO) throws IOException {
         if (goodsDTO.getGoodsFile().get(0).isEmpty()) {
-            GoodsEntity goodsEntity = GoodsEntity.toSaveEntity(goodsDTO);
+            GoodsEntity goodsEntity = GoodsEntity.toSaveEntityWithFile(goodsDTO);
             return goodsRepository.save(goodsEntity).getId();
         } else {
             GoodsEntity goodsEntity = GoodsEntity.toSaveEntityWithFile(goodsDTO);
@@ -39,7 +39,7 @@ public class GoodsService {
                 String savePath = "D:\\springboot_img\\" + storedFileName;
                 goodsFile.transferTo(new File(savePath));
                 GoodsFileEntity goodsFileEntity =
-                        GoodsFileEntity.toSaveBoardFile(savedEntity, originalFilename, storedFileName);
+                        GoodsFileEntity.toSaveGoodsFile(savedEntity, originalFilename, storedFileName);
                 goodsFileRepository.save(goodsFileEntity);
             }
             return savedEntity.getId();

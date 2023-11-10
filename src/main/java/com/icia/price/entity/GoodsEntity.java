@@ -33,17 +33,17 @@ public class GoodsEntity extends BaseEntity {
     @Column
     private int fileAttached;
 
-    @OneToMany(mappedBy = "goodsEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "goodsEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<GoodsFileEntity> goodsFileEntityList = new ArrayList<>();
 
-    public static GoodsEntity toSaveEntity(GoodsDTO goodsDTO) {
-        GoodsEntity goodsEntity = new GoodsEntity();
-        goodsEntity.setGoodsName(goodsDTO.getGoodsName());
-        goodsEntity.setGoodsPrice(goodsDTO.getGoodsPrice());
-        goodsEntity.setGoodsMaker(goodsDTO.getGoodsMaker());
-        goodsEntity.setFileAttached(1);
-        return goodsEntity;
-    }
+//    public static GoodsEntity toSaveEntity(GoodsDTO goodsDTO) {
+//        GoodsEntity goodsEntity = new GoodsEntity();
+//        goodsEntity.setGoodsName(goodsDTO.getGoodsName());
+//        goodsEntity.setGoodsPrice(goodsDTO.getGoodsPrice());
+//        goodsEntity.setGoodsMaker(goodsDTO.getGoodsMaker());
+//        goodsEntity.setFileAttached(1);
+//        return goodsEntity;
+//    }
 
 //    public static GoodsEntity toSaveEntityWithFile(GoodsDTO goodsDTO) {
 //        GoodsEntity goodsEntity = new GoodsEntity();

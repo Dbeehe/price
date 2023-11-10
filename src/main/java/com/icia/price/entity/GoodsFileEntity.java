@@ -25,7 +25,7 @@ public class GoodsFileEntity {
     @JoinColumn(name = "goods_id")
     private GoodsEntity goodsEntity;
 
-    public static GoodsFileEntity toSaveBoardFile(GoodsEntity savedEntity, String originalFilename, String storedFileName) {
+    public static GoodsFileEntity toSaveGoodsFile(GoodsEntity savedEntity, String originalFilename, String storedFileName) {
         GoodsFileEntity goodsFileEntity = new GoodsFileEntity();
         goodsFileEntity.setOriginalFileName(originalFilename);
         goodsFileEntity.setStoredFileName(storedFileName);

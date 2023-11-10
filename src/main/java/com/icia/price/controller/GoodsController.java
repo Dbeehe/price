@@ -32,7 +32,7 @@ public class GoodsController {
     @PostMapping("/save")
     public String save(@ModelAttribute GoodsDTO goodsDTO) throws IOException {
         goodsService.save(goodsDTO);
-        return "goodsPages/goodsList";
+        return "redirect:/goods";
     }
 
     @GetMapping
