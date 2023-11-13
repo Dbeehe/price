@@ -30,10 +30,26 @@
       <td th:text="${goods.goodsMaker}"></td>
     </tr>
   </table>
+  <div id="btn-area">
+    <button class="btn btn-primary" onclick="order_req()" onblur="login_check()">구매하기</button>
+    <button class="btn btn-warning" onclick="update_req()" onblur="login_check()">장바구니</button>
+  </div>
 </div>
 
 <div th:replace="~{component/footer :: footer}"></div>
 
 </body>
+<script th:inline="javascript">
+
+  const order_req = () => {
+    const id = [[${board.id}]];
+    location.href = `/board/update/${id}`;
+  }
+
+  const update_req = () => {
+    const id = [[${board.id}]];
+    location.href = `/board/delete/${id}`;
+  }
+</script>
 </html>
 
